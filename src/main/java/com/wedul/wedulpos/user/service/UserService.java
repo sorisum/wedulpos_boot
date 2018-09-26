@@ -46,7 +46,7 @@ public interface UserService {
 	 * @return boolean boolean
 	 * @throws Exception the exception
 	 */
-	boolean checkCert(String otp) throws Exception;
+	boolean checkCert(String userId, String otp) throws Exception;
 
 	/**
 	 * 임시 비밀번호 발급

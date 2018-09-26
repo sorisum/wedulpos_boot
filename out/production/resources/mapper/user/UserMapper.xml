@@ -7,18 +7,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 사용자 조회 -->
 	<select id="selectUser" parameterType="UserDto" resultType="UserDto">
-	SELECT
-		*
-	FROM
-		wedulpos.user
-	<where>
-		<if test="email != null and email != ''">
-			email = #{email}
-		</if>
-		<if test="nickname != null and nickname != ''">
-			nickname = #{nickname}
-		</if>
-	</where>
+		SELECT
+		u.nickname,
+		u.email,
+		u.password AS password,
+		u.sns_id AS snsId,
+		u.isadmin AS isAdmin
+		FROM
+		wedulpos.user u
+		<where>
+			<if test="email != null and email != ''">
+				u.email = #{email}
+			</if>
+			<if test="nickname != null and nickname != ''">
+			AND
+				u.nickname = #{nickname}
+			</if>
+			<if test="snsId != null and snsId != ''">
+			AND
+				u.sns_id = #{snsId}
+			</if>
+		</where>
 	</select>
 	
 	<!-- 최고관리자 조회 -->
@@ -40,17 +49,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		nickname,
 		password,
 		email,
-		isadmin
+		isadmin,
+		sns_id
 	)
 	VALUES
 	(
 		#{nickname},
 		#{ecPassword},
 		#{email},
-		#{isadmin}
+		#{isAdmin},
+		#{snsId}
 	)
 	ON DUPLICATE KEY UPDATE
-	password = #{ecPassword}, isadmin = #{isadmin}
+	password = #{ecPassword}, isadmin = #{isAdmin}
 	</insert>
 	
 	<!-- 임시 비밀번호 변경 -->
@@ -58,44 +69,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	UPDATE
 		wedulpos.user
 	SET
-		password = #{ecPassword}
+		password = #{ecPassword},
+		update_date = CURRENT_TIMESTAMP
 	<where>
 		email = #{email}	
 	</where>
 	</update>
 	
-	<!-- 사용자 OTP 입력 -->
-	<insert id="insertUserOtp" parameterType="UserOtpDto">
-	INSERT INTO
-	wedulpos.otp
-	(
-		type,
-		userid,
-		otp
-	)
-	VALUES
-	(
-		#{type.type},
-		#{userid},
-		#{otp}
-	)
-	ON DUPLICATE KEY UPDATE type=#{type.type}, userid=#{userid}, otp=#{otp};
-	</insert>
-	
-	<!-- 사용자 OTP 제거 -->
-	<delete id="deleteUserOtp" parameterType="UserOtpDto">
-	DELETE FROM
-		wedulpos.otp
-	<where>
-		<if test="null != type">
-			type = #{type.type}
-		</if>
-		<if test="null != userid and '' != userid">
-			AND userid = #{userid}		
-		</if>
-		<if test="null != otp and '' != otp">
-			AND otp = #{otp}
-		</if>
-	</where>
-	</delete>
 </mapper>

@@ -47,34 +47,6 @@ import com.wedul.common.util.MessageBundleUtil;
 @MapperScan(basePackages = {"com.wedul.wedulpos.*.*"}, annotationClass=Mapper.class)
 public class RootApplicationContextConfig {
 
-	@Bean(name = "txAdvice")
-	public TransactionInterceptor getAdvisor(PlatformTransactionManager transactionManager) throws Exception {
-		Properties properties = new Properties();
-	    properties.setProperty("insert*", "-Exception");
-	    properties.setProperty("update*", "-Exception");
-	    properties.setProperty("delete*", "-Exception");
-	    properties.setProperty("select*", "-Exception");
-	    TransactionInterceptor tsi = new TransactionInterceptor(transactionManager, properties);
-	    return tsi;
-	}
-	
-	@Bean
-	  public BeanNameAutoProxyCreator txProxy() {
-	    BeanNameAutoProxyCreator creator = new BeanNameAutoProxyCreator();
-	    creator.setInterceptorNames("txAdvice");
-	    creator.setBeanNames("*Service", "*ServiceImpl");
-	    creator.setProxyTargetClass(true);
-	    return creator;
-	  }
-
-	@Bean
-	public PlatformTransactionManager transactionManager(DataSource dataSource) {
-		DataSourceTransactionManager transactionManager = new DataSourceTransactionManager();
-		transactionManager.setDataSource(dataSource);
-		
-		return transactionManager;
-	}
-	
 	@Bean(name = "sqlSession", destroyMethod = "clearCache")
     public SqlSessionTemplate sqlSession(SqlSessionFactory sqlSessionFactory) {
         return new SqlSessionTemplate(sqlSessionFactory);

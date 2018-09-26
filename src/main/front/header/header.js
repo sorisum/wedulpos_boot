@@ -12,6 +12,7 @@ const $loginButton = $('.loginButton');
 const $logoutButton = $('#logoutBox');
 const $loginUserTxt = $('#loginUserTxt');
 const $userInfoDialog = $('#userInfoDialog');
+const $isSnsLogin = $('#isSnsLogin');
 
 // weather location
 const weatherLocations = [
@@ -72,7 +73,7 @@ window.fbAsyncInit = function() {
 const weatherDisplay = () => {
   Common.sendAjax({
     url: Common.getFullPath('weather'),
-    type: 'POST',
+    type: 'GET',
     success: (e) => {
       getWeaterData(e);
       setInterval(function() {
@@ -83,7 +84,7 @@ const weatherDisplay = () => {
 };
 
 // 페이스북 계정 로그아웃
-var faceBookLogOut = function(callback) {
+const faceBookLogOut = function(callback) {
     FB.getLoginStatus(function(response) {
       if (response.status === 'connected') {
           FB.logout(function(response) {
@@ -96,7 +97,7 @@ var faceBookLogOut = function(callback) {
 };
 
 // logout;
-var logout = function() {
+const logout = function() {
     let param = {};
     param[`${token_header}`] = token;
 
@@ -119,10 +120,8 @@ $logoutButton.click(() => {
   if (confirm(Common.getMessage('common.message.account.logout'))) {
     let loginType = $loginType.val();
 
-    console.log(loginType);
     switch (loginType) {
         case 'FACE_BOOK':
-            alert(loginType);
             faceBookLogOut(logout);
             break;
 
@@ -190,8 +189,18 @@ const checkUserInfoValidate = function() {
   return true;
 };
 
+const isSnsLogin = function() {
+  return $isSnsLogin.val() == 'true';
+};
+
 // 로그인 유저 선택시 출력되는 다이얼로그
 $loginUserTxt.click(() => {
+
+  if (isSnsLogin()) {
+    alert(Common.getMessage('common.message.sns_info_edit'));
+    return;
+  }
+
   $userInfoDialog.dialog({
       height: 320,
       width: 410,

@@ -5,6 +5,11 @@
       "sourceType": "com.wedul.common.config.ServletContextConfig$ManagerProperties",
       "name": "manager",
       "type": "com.wedul.common.config.ServletContextConfig$ManagerProperties"
+    },
+    {
+      "sourceType": "com.wedul.common.config.RedisConfiguration$RedisProperties",
+      "name": "spring.redis",
+      "type": "com.wedul.common.config.RedisConfiguration$RedisProperties"
     }
   ],
   "properties": [
@@ -33,6 +38,22 @@
       "sourceType": "com.wedul.common.config.ServletContextConfig$ManagerProperties",
       "name": "manager.email-protocol",
       "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wedul.common.config.RedisConfiguration$RedisProperties",
+      "name": "spring.redis.host",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wedul.common.config.RedisConfiguration$RedisProperties",
+      "name": "spring.redis.password",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wedul.common.config.RedisConfiguration$RedisProperties",
+      "defaultValue": 0,
+      "name": "spring.redis.port",
+      "type": "java.lang.Integer"
     }
   ]
 }

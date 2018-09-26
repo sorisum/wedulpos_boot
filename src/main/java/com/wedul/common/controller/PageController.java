@@ -43,8 +43,7 @@ public class PageController {
 	 * todo 페이지
 	 * 
 	 * @param response
-	 * @param path
-	 * @return
+	 * @return String
 	 * @throws IOException
 	 */
 	@RequestMapping("/todo") 
@@ -56,7 +55,6 @@ public class PageController {
 	 * 스케줄 페이지
 	 * 
 	 * @param response
-	 * @param path
 	 * @return
 	 * @throws IOException
 	 */

@@ -97,7 +97,6 @@ public class LanguageController {
 	 * 
 	 * @param propertiesName
 	 * @param session
-	 * @param outputStream
 	 * @throws IOException
 	 */
 	@SuppressWarnings("unchecked")

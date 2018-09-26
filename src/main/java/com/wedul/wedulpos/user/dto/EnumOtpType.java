@@ -12,7 +12,7 @@ public enum EnumOtpType {
 	
 	private int type;
 	
-	private EnumOtpType(int type) {
+	EnumOtpType(int type) {
 		this.type = type;
 	}
 	

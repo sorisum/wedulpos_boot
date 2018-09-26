@@ -89,8 +89,8 @@ public class UserController {
      * @throws Exception
      */
     @RequestMapping("/cert/check")
-    public ResponseEntity<?> checkCert(String otp) throws Exception {
-        return ResponseEntity.ok(userService.checkCert(otp.trim()));
+    public ResponseEntity<?> checkCert(String userId, String otp) throws Exception {
+        return ResponseEntity.ok(userService.checkCert(userId.trim(), otp.trim()));
     }
 
     /**

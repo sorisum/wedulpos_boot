@@ -10,6 +10,8 @@ import com.wedul.common.util.HashUtil;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.io.Serializable;
+
 /**
  * User정보 Dto 
  * 
@@ -22,7 +24,7 @@ import lombok.EqualsAndHashCode;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper=false)
-public class UserDto extends CommonDto {
+public class UserDto extends CommonDto implements Serializable {
 	private String nickname;
 	private String email;
 	private String password = "";

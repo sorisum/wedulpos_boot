@@ -12,7 +12,7 @@ public enum EnumLoginType {
 
     int flag;
 
-    private EnumLoginType(int flag) {
+    EnumLoginType(int flag) {
         this.flag = flag;
     }
 

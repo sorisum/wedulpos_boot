@@ -170,7 +170,7 @@ $otpCheckBtn.click(() => {
   // 인증서 확인 요청
   Common.sendAjax({
     url: Common.getFullPath('user/cert/check'),
-    param: { 'otp' : $otpNum.val() },
+    param: { 'otp' : $otpNum.val(), 'userId' : $joinEmail.val() },
     type: 'POST',
     success: (e) => {
       if (Common.isSuccess(e)) {

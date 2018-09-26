@@ -28,21 +28,6 @@ public interface UserMapper {
 	int insertUser(UserDto user);
 
 	/**
-	 * 사용자 OTP 입력
-	 *
-	 * @param dto the dto
-	 */
-	void insertUserOtp(UserOtpDto dto);
-
-	/**
-	 * 사용자 OTP 제거
-	 *
-	 * @param dto the dto
-	 * @return int
-	 */
-	int deleteUserOtp(UserOtpDto dto);
-
-	/**
 	 * 임시 비밀번호 업데이트
 	 *
 	 * @param dto the dto
