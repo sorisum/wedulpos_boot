@@ -69,44 +69,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	UPDATE
 		wedulpos.user
 	SET
-		password = #{ecPassword}
+		password = #{ecPassword},
+		update_date = CURRENT_TIMESTAMP
 	<where>
 		email = #{email}	
 	</where>
 	</update>
 	
-	<!-- 사용자 OTP 입력 -->
-	<insert id="insertUserOtp" parameterType="UserOtpDto">
-	INSERT INTO
-	wedulpos.otp
-	(
-		type,
-		userid,
-		otp
-	)
-	VALUES
-	(
-		#{type.type},
-		#{userid},
-		#{otp}
-	)
-	ON DUPLICATE KEY UPDATE type=#{type.type}, userid=#{userid}, otp=#{otp};
-	</insert>
-
-	<!-- 사용자 OTP 제거 -->
-	<delete id="deleteUserOtp" parameterType="UserOtpDto">
-	DELETE FROM
-		wedulpos.otp
-	<where>
-		<if test="null != type">
-			type = #{type.type}
-		</if>
-		<if test="null != userid and '' != userid">
-			AND userid = #{userid}		
-		</if>
-		<if test="null != otp and '' != otp">
-			AND otp = #{otp}
-		</if>
-	</where>
-	</delete>
 </mapper>

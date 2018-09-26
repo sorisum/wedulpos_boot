@@ -5,6 +5,7 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,9 +16,9 @@ import org.slf4j.LoggerFactory;
  * @author wedul
  *
  */
+@Slf4j
 public class AES256Cipher {
-	private static final Logger logger = LoggerFactory.getLogger(AES256Cipher.class);
-	
+
 	private static volatile AES256Cipher INSTANCE;
 	final static String secretKey = "12345678901234567890123456789012"; //32bit
 	static String IV = ""; //16bit
@@ -52,7 +53,7 @@ public class AES256Cipher {
 			
 			return enStr;
 		} catch (Exception ex) {
-			logger.error("encrypt error", ex);
+			log.error("encrypt error", ex);
 			return str;
 		}
 	}
@@ -70,7 +71,7 @@ public class AES256Cipher {
 			
 			return new String(c.doFinal(byteStr), "UTF-8");
 		} catch (Exception ex) {
-			logger.error("decrypt error", ex);
+			log.error("decrypt error", ex);
 			return str;
 		}
 	}
