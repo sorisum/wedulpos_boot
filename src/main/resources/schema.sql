@@ -9,6 +9,8 @@ CREATE TABLE IF NOT EXISTS `wedulpos`.`user` (
   `email` VARCHAR(255) NOT NULL COMMENT '이메일',
   `password` TEXT NULL COMMENT '비밀번호',
   `isadmin` BOOLEAN NOT NULL DEFAULT 0 COMMENT '최고관리자 여부',
+  `create_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '생성 시간',
+  `update_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '마지막 수정 시간',
   PRIMARY KEY (`idx`),
   UNIQUE INDEX `user_uq1` (`email`))
 ENGINE = InnoDB
@@ -19,12 +21,4 @@ COMMENT = '사용자';
 CREATE TABLE IF NOT EXISTS `wedulpos`.`variables` (
 	`name` VARCHAR(255) NOT NULL COMMENT '설정 이름' PRIMARY KEY,
 	`value` TEXT NOT NULL COMMENT '설정 값'
-) charset=utf8;
-
--- otp 테이블.
-CREATE TABLE IF NOT EXISTS `wedulpos`.`otp` (
-	`type` INT NOT NULL COMMENT 'otp type : 0 (인증번호), 1(임시비밀번호)',
-	`userid` VARCHAR(255) NOT NULL COMMENT '사용자 ID',
-	`otp` TEXT NOT NULL COMMENT 'otp 번호',
-	PRIMARY KEY(type, userid)
 ) charset=utf8;

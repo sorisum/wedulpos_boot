@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -16,11 +17,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wedul.common.dto.WeatherDto;
 
 @Service
+@Slf4j
 public class CommonService {
 	
-	private static final Logger logger = LoggerFactory.getLogger(CommonService.class);
-
-	@SuppressWarnings("unchecked")
 	public List<WeatherDto> getWeatherData() {
 		List<String> regionCode = Arrays.asList("1835848", "1843561", "1835235", "1846266", "1838524", "1841811");
 		List<WeatherDto> result = new ArrayList<>();
@@ -42,7 +41,7 @@ public class CommonService {
 				}
 				
 			} catch (Exception e) {
-				logger.error("open weatehr error", e);
+				log.error("open weatehr error", e);
 			}
 		}
 		return result;
