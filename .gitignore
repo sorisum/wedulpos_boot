@@ -54,3 +54,5 @@ Servers/
 RemoteSystemsTempFiles/
 Tomcat/
 /target/
+/build
+/out
