@@ -2,3 +2,9 @@ language: java
 branches:
   only:
     - master
+    
+deploy:
+  provider: heroku
+  api_key:
+    secure: $HEROKU_KEY
+  app: wedul-pos
