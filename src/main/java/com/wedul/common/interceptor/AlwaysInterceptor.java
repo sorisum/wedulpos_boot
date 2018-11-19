@@ -16,14 +16,12 @@ import com.wedul.wedulpos.user.dto.UserDto;
  * @date 2017. 11. 3.
  * @name AlwaysInterceptor
  */
-public class AlwaysInterceptor extends
-        HandlerInterceptorAdapter {
+public class AlwaysInterceptor extends HandlerInterceptorAdapter {
 
   UserDto loginUser;
 
   @Override
-  public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-          throws Exception {
+  public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
 
     loginUser = SessionUtil.getCurrentUser();
     if (null != loginUser) {

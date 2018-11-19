@@ -11,6 +11,7 @@ import com.wedul.wedulpos.user.dto.EnumLoginType;
 import com.wedul.wedulpos.user.dto.MyAuthenticaion;
 import com.wedul.wedulpos.user.dto.UserDto;
 import com.wedul.wedulpos.user.service.UserService;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,22 +32,14 @@ import java.util.Arrays;
  */
 @Service("UserService")
 @Slf4j
+@AllArgsConstructor
 public class UserServiceImpl implements UserService {
 
-  @Autowired
-  UserMapper userDao;
-
-  @Autowired
-  CertDao certDao;
-
-  @Autowired
-  MessageBundleUtil messageBundleUtil;
-
-  @Autowired
-  MailUtil mailUtil;
-
-  @Autowired
-  AuthProvider authProvider;
+  private final UserMapper userDao;
+  private final CertDao certDao;
+  private final MessageBundleUtil messageBundleUtil;
+  private final MailUtil mailUtil;
+  private final AuthProvider authProvider;
 
   @Override
   public UserDto selectUser(UserDto user) {

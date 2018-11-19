@@ -4,6 +4,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMessage.RecipientType;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
@@ -14,22 +15,16 @@ import org.springframework.stereotype.Component;
  * @author wedul
  *
  */
+@AllArgsConstructor
 @Component
 public class MailUtil {
 	
-	@Autowired
-	JavaMailSender javaMailSender;
-	
-	@Autowired
-	MessageBundleUtil messageBundleUtil;
-	
-	public MailUtil() {}
-	
+	private final JavaMailSender javaMailSender;
+
 	/**
 	 * Mail 전송
 	 * 
 	 * @param email
-	 * @param otp
 	 * @param subject
 	 * @param content
 	 * @throws Exception

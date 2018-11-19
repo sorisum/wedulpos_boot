@@ -48,6 +48,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
             "/user/login/facebook",
             "/join",
             "/getLanguage/**",
+            "/swagger-ui.html",
             "/getMessage"); // #3
   }
 

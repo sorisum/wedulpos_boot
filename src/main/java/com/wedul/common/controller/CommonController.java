@@ -1,7 +1,7 @@
 package com.wedul.common.controller;
 
 import com.wedul.common.service.CommonService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
  *
  */
 @RestController
+@AllArgsConstructor
 public class CommonController {
 	
-	@Autowired
-	CommonService commonService;
-	
+	private final CommonService commonService;
+
 	/**
 	 * 날씨 가져오기
 	 * 

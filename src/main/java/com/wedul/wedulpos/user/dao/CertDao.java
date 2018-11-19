@@ -2,6 +2,7 @@ package com.wedul.wedulpos.user.dao;
 
 import com.wedul.common.enums.EnumsRedisKeys;
 import com.wedul.common.util.CommonUtils;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
@@ -16,11 +17,10 @@ import java.util.concurrent.TimeUnit;
  * @since 2018. 9. 25.
  **/
 @Repository
+@AllArgsConstructor
 public class CertDao {
 
-  @Autowired
-  RedisTemplate<String, String> redisTemplage;
-
+  private final RedisTemplate<String, String> redisTemplage;
   private final int KEY_EXPIRE_SECOND = 180;
 
   /**
@@ -44,7 +44,6 @@ public class CertDao {
    */
   public boolean checkOtpNum(String userId, String otpNum) {
     String value = redisTemplage.opsForValue().get(makeKey(userId));
-
     return CommonUtils.base64Encoding(otpNum).equals(value) && redisTemplage.opsForValue().getOperations().delete(makeKey(userId));
   }
 

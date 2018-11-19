@@ -20,7 +20,6 @@ public class VariablesServiceImpl implements VariablesServiceI {
 	
 	private Map<String, String> map;
 	
-	@Autowired
 	public VariablesServiceImpl(VariablesMapper dao) {
 		map = new HashMap<>();
 		try {

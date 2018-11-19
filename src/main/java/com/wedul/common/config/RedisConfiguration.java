@@ -30,7 +30,6 @@ public class RedisConfiguration extends AbstractHttpSessionApplicationInitialize
   public static class RedisProperties {
     private String host;
     private int port;
-    private String password;
   }
 
   @Autowired
@@ -39,12 +38,11 @@ public class RedisConfiguration extends AbstractHttpSessionApplicationInitialize
   @Bean
   public JedisConnectionFactory jedisConnectionFactory() {
     RedisStandaloneConfiguration configuration = new RedisStandaloneConfiguration(props.getHost(), props.getPort());
-    configuration.setPassword(RedisPassword.of(props.getPassword()));
 
     return new JedisConnectionFactory(configuration);
   }
 
-  @Bean("redisTemplage")
+  @Bean("redisTemplate")
   public StringRedisTemplate stringRedisTemplate(JedisConnectionFactory jedisConnectionFactory) {
 
     StringRedisTemplate template = new StringRedisTemplate();
