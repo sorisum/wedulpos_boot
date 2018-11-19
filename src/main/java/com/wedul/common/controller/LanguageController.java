@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import lombok.AllArgsConstructor;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -33,9 +34,9 @@ import com.wedul.common.util.MessageBundleUtil;
  * @name LanguageController
  */
 @Controller
+@AllArgsConstructor
 public class LanguageController {
 
-	@Autowired
 	private MessageBundleUtil messageBundleUtil;
 
 	/**
@@ -99,7 +100,6 @@ public class LanguageController {
 	 * @param session
 	 * @throws IOException
 	 */
-	@SuppressWarnings("unchecked")
 	private List<String> setMessage(String propertiesName, HttpSession session) throws IOException {
 		Resource resource = null;
 		resource = new ClassPathResource("/messages/" + propertiesName.split("_")[0] + "/"+ propertiesName + ".properties");
@@ -112,7 +112,7 @@ public class LanguageController {
 	/**
 	 * Ajax를 이용하여 Message Properties 값 가져오기
 	 * 
-	 * @return
+	 * @returnO
 	 */
 	@RequestMapping(value= "/getMessage", method=RequestMethod.POST)
 	@ResponseBody

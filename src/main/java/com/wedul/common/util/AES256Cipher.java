@@ -39,7 +39,6 @@ public class AES256Cipher {
 
 	//암호화
 	public String AES_Encode(String str) {
-		
 		try {
 			byte[] keyData = secretKey.getBytes();
 			
@@ -60,7 +59,6 @@ public class AES256Cipher {
 
 	//복호화
 	public String AES_Decode(String str) {
-		
 		try {
 			byte[] keyData = secretKey.getBytes();
 			SecretKey secureKey = new SecretKeySpec(keyData, "AES");

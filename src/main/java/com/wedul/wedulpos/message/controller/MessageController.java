@@ -1,5 +1,6 @@
 package com.wedul.wedulpos.message.controller;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -15,18 +16,12 @@ import com.wedul.wedulpos.message.service.MessageService;
  *
  */
 @Controller
+@AllArgsConstructor
 public class MessageController {
 	
 	// @EnableWebSocketMessageBroker를 통해서 등록되는 bean이다. 특정 Broker로 메시지를 전달한다.
 	private final SimpMessagingTemplate template;
-	
-	@Autowired
-	MessageService messageService;
-
-    @Autowired
-    public MessageController(SimpMessagingTemplate template) {
-        this.template = template;
-    }
+	private final MessageService messageService;
 
     /**
      * //Client가 SEND를 할 수 있는 경로다. StompWebSocketConfig에서 

@@ -13,8 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @author wedul
  * @since 2018. 8. 21.
  **/
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest
+
 public class UtilTest {
 
     @Test

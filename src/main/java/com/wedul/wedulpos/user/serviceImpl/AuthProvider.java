@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.wedul.wedulpos.user.dto.EnumLoginType;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
